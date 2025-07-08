@@ -1,0 +1,86 @@
+% Description: Basic professional resume template
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% Page setup
+\geometry{margin=0.75in}
+\pagestyle{empty}
+
+% Colors
+\definecolor{darkblue}{RGB}{0,51,102}
+\definecolor{lightgray}{RGB}{128,128,128}
+
+% Custom commands
+\newcommand{\name}[1]{\begin{center}\textbf{\Large #1}\end{center}}
+\newcommand{\contact}[1]{\begin{center}\textcolor{lightgray}{#1}\end{center}}
+\newcommand{\section}[1]{\vspace{0.5em}\textcolor{darkblue}{\textbf{\large #1}}\vspace{0.2em}\hrule\vspace{0.3em}}
+
+\begin{document}
+
+\name{ {{- name -}} }
+\contact{ {{- email -}} | {{- phone -}} | {{- location -}} }
+{%- if linkedin %}
+\contact{LinkedIn: \href{ {{- linkedin -}} }{ {{- linkedin -}} }}
+{%- endif %}
+
+{%- if summary %}
+\section{Professional Summary}
+{{- summary -}}
+{%- endif %}
+
+{%- if experience %}
+\section{Professional Experience}
+{%- for job in experience %}
+\textbf{ {{- job.title -}} } | \textit{ {{- job.company -}} } \hfill {{- job.dates -}}
+{%- if job.location %}
+\\ \textcolor{lightgray}{ {{- job.location -}} }
+{%- endif %}
+\begin{itemize}[leftmargin=*,noitemsep]
+{%- for achievement in job.achievements %}
+\item {{- achievement -}}
+{%- endfor %}
+\end{itemize}
+\vspace{0.3em}
+{%- endfor %}
+{%- endif %}
+
+{%- if education %}
+\section{Education}
+{%- for edu in education %}
+\textbf{ {{- edu.degree -}} } | \textit{ {{- edu.institution -}} } \hfill {{- edu.dates -}}
+{%- if edu.gpa %}
+\\ GPA: {{- edu.gpa -}}
+{%- endif %}
+{%- if edu.details %}
+\\ {{- edu.details -}}
+{%- endif %}
+\vspace{0.3em}
+{%- endfor %}
+{%- endif %}
+
+{%- if skills %}
+\section{Technical Skills}
+{%- for category, skill_list in skills.items() %}
+\textbf{ {{- category -}} }: {{- skill_list | join(', ') -}}
+{%- if not loop.last %} \\ {%- endif %}
+{%- endfor %}
+{%- endif %}
+
+{%- if projects %}
+\section{Notable Projects}
+{%- for project in projects %}
+\textbf{ {{- project.name -}} } {%- if project.url %} | \href{ {{- project.url -}} }{ {{- project.url -}} } {%- endif %}
+\\ {{- project.description -}}
+{%- if project.technologies %}
+\\ \textit{Technologies: {{- project.technologies | join(', ') -}} }
+{%- endif %}
+\vspace{0.3em}
+{%- endfor %}
+{%- endif %}
+
+\end{document}
