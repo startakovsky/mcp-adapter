@@ -8,7 +8,7 @@
 
 ### Demo Video
 
-https://github.com/user-attachments/assets/d4bfba7b-5366-45e5-97c3-ffe0cdd66a2e
+https://github.com/user-attachments/assets/50c6b0a1-82ea-4975-b4ff-64e3a6af56ac
 
 ### Setup Instructions
 
