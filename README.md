@@ -125,8 +125,7 @@ claude mcp add -s user -t http http://localhost:8080
 
 ## Directory Structure
 
-- `scripts/`: Developer tools and workflow scripts (e.g., `latex-watch.py` for live LaTeX compilation)
-- `examples/`: Example/demo scripts (e.g., `example_workflow.py` for showing how to use the MCP Adapter LaTeX workflow)
+- `scripts/`: Developer tools and workflow scripts
 - `tests/`: All test code and test utilities
 - `latex-server/`, `hello-world/`, `gateway/`: Service implementations
 
@@ -191,10 +190,6 @@ ghcr.io/startakovsky/mcp-adapter/gateway:sha-1234567
 
 **Production Deployment**: Images are automatically built and tested via CI/CD pipeline on every push to `main`.
 
-## Workflow Tools
-
-- **scripts/latex-watch.py**: Live LaTeX compilation watcher
-- **examples/example_workflow.py**: File-based workflow demonstration (87% token reduction)
 
 ## Roadmap
 
