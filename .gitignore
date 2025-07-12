@@ -1,0 +1,182 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# uv
+.uv/
+uv.lock
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# MCP Studio specific
+latex-server/output/*.pdf
+latex-server/uploads/*.tex
+logs/
+tmp/
+
+# Test artifacts - DO NOT COMMIT
+file-server/shared_files/*.tex
+file-server/shared_files/*.pdf
+file-server/shared_files/*etc_passwd*
+file-server/shared_files/*windows_system32*
+file-server/shared_files/_*
+file-server/shared_files/compiled_output*
+file-server/shared_files/custom_output*
+file-server/shared_files/reuse_*
+file-server/shared_files/my_document*
+file-server/shared_files/pytest_*
+file-server/shared_files/*TABLE*
+file-server/shared_files/aaaaaaa*
+file-server/shared_files/js*
+file-server/shared_files/hosts*
+
+# Test file patterns from test suites
+file-server/shared_files/test_*
+file-server/shared_files/leak_test_*
+file-server/shared_files/concurrent_*
+file-server/shared_files/rapid_*
+file-server/shared_files/timeout_test_*
+file-server/shared_files/upload_test*
+file-server/shared_files/compile_test*
+file-server/shared_files/image*
+file-server/shared_files/test.*
+
+# UUID files from test runs - pattern for 8-4-4-4-12 format
+file-server/shared_files/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f]-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+EOF < /dev/null

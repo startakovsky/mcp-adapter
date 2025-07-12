@@ -1,0 +1,51 @@
+% Description: Simple document template with title and content
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+% Page setup
+\geometry{margin=1in}
+
+% Title information
+\title{ {{- title -}} }
+{%- if author %}
+\author{ {{- author -}} }
+{%- endif %}
+{%- if date %}
+\date{ {{- date -}} }
+{%- else %}
+\date{\today}
+{%- endif %}
+
+\begin{document}
+
+\maketitle
+
+{%- if abstract %}
+\begin{abstract}
+{{- abstract -}}
+\end{abstract}
+{%- endif %}
+
+{%- if sections %}
+{%- for section in sections %}
+\section{ {{- section.title -}} }
+{{- section.content -}}
+
+{%- if section.subsections %}
+{%- for subsection in section.subsections %}
+\subsection{ {{- subsection.title -}} }
+{{- subsection.content -}}
+{%- endfor %}
+{%- endif %}
+
+{%- endfor %}
+{%- else %}
+{{- content -}}
+{%- endif %}
+
+\end{document}

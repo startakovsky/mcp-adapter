@@ -1,0 +1,119 @@
+% Description: US map template using tikz with simplified state shapes
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+% Page setup
+\geometry{margin=0.5in}
+\pagestyle{empty}
+
+% Color definitions
+\definecolor{mapblue}{RGB}{70,130,180}
+\definecolor{mapred}{RGB}{220,20,60}
+\definecolor{mapgreen}{RGB}{34,139,34}
+\definecolor{mapyellow}{RGB}{255,215,0}
+\definecolor{maporange}{RGB}{255,140,0}
+\definecolor{mappurple}{RGB}{128,0,128}
+\definecolor{mapgray}{RGB}{128,128,128}
+
+\begin{document}
+
+{%- if title %}
+\begin{center}
+\textbf{\Large {{- title -}} }
+\end{center}
+\vspace{0.5em}
+{%- endif %}
+
+\begin{center}
+\begin{tikzpicture}[scale={{- scale | default(1.0) -}}]
+
+% Simplified US map outline (approximate continental US)
+\draw[thick, black] 
+  (0,0) -- (10,0) -- (10,1) -- (9,2) -- (8,3) -- (6,4) -- (4,4) -- (2,3) -- (1,2) -- (0,1) -- cycle;
+
+% State approximate positions (simplified grid)
+\coordinate (CA) at (1,2);
+\coordinate (TX) at (4,1);
+\coordinate (NY) at (8,3);
+\coordinate (FL) at (7,0.5);
+\coordinate (WA) at (1,4);
+\coordinate (IL) at (5,2.5);
+\coordinate (PA) at (7.5,3);
+\coordinate (OH) at (6.5,2.5);
+\coordinate (GA) at (6.5,1.5);
+\coordinate (NC) at (7,2);
+\coordinate (MI) at (6,3);
+\coordinate (NJ) at (8,2.8);
+\coordinate (VA) at (7.5,2.2);
+\coordinate (TN) at (6,2);
+\coordinate (IN) at (5.5,2.5);
+\coordinate (AZ) at (2,1);
+\coordinate (MA) at (8.5,3.5);
+\coordinate (WI) at (5,3);
+\coordinate (MN) at (4.5,3.5);
+\coordinate (CO) at (3,2);
+\coordinate (AL) at (6,1.2);
+\coordinate (LA) at (5,0.8);
+\coordinate (SC) at (7.2,1.8);
+\coordinate (KY) at (6.2,2.3);
+
+{%- if state_colors %}
+% Color individual states (using circles as simplified state representations)
+{%- for state, color in state_colors.items() %}
+\fill[{{- color -}}] ({{- state -}}) circle (0.15);
+{%- endfor %}
+{%- endif %}
+
+{%- if state_data %}
+% Add state labels with data
+{%- for state, data in state_data.items() %}
+\node[font=\tiny, above] at ({{- state -}}) { {{- data -}} };
+{%- endfor %}
+{%- endif %}
+
+{%- if markers %}
+% Add markers for specific locations
+{%- for marker in markers %}
+\node[circle, fill={{- marker.color | default('red') -}}, inner sep={{- marker.size | default('2pt') -}}] at ({{- marker.x -}}, {{- marker.y -}}) {};
+{%- if marker.label %}
+\node[above=2pt, font=\tiny] at ({{- marker.x -}}, {{- marker.y -}}) { {{- marker.label -}} };
+{%- endif %}
+{%- endfor %}
+{%- endif %}
+
+% Add state abbreviations for key states
+\node[font=\tiny] at (CA) {CA};
+\node[font=\tiny] at (TX) {TX};
+\node[font=\tiny] at (NY) {NY};
+\node[font=\tiny] at (FL) {FL};
+\node[font=\tiny] at (WA) {WA};
+
+\end{tikzpicture}
+\end{center}
+
+{%- if legend %}
+\vspace{0.5em}
+\begin{center}
+\textbf{Legend}
+\end{center}
+\begin{itemize}
+{%- for item in legend %}
+\item \textcolor{ {{- item.color -}} }{\rule{0.5cm}{0.2cm}} {{- item.label -}}
+{%- endfor %}
+\end{itemize}
+{%- endif %}
+
+{%- if notes %}
+\vspace{0.5em}
+\begin{center}
+\textbf{Notes}
+\end{center}
+{{- notes -}}
+{%- endif %}
+
+\end{document}
