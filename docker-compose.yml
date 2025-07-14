@@ -1,0 +1,69 @@
+services:
+  # Gateway service to manage MCP server access
+  gateway:
+    build: ./gateway
+    container_name: mcp-adapter-gateway
+    ports:
+      - "8080:8000"
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEBUG=${DEBUG:-false}
+    depends_on:
+      - hello-world
+      - latex-server
+    networks:
+      - mcp-network
+    volumes:
+      - ./gateway:/app
+
+  # Hello World server for testing
+  hello-world:
+    build: ./hello-world
+    container_name: mcp-adapter-hello-world
+    ports:
+      - "8001:8000"
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEBUG=${DEBUG:-false}
+    networks:
+      - mcp-network
+    volumes:
+      - ./hello-world:/app
+
+  # LaTeX server for PDF compilation
+  latex-server:
+    build: ./latex-server
+    container_name: mcp-adapter-latex-server
+    ports:
+      - "8002:8000"
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEBUG=${DEBUG:-false}
+      - SHARED_FILES_PATH=/shared_files
+    depends_on:
+      - file-server
+    networks:
+      - mcp-network
+    volumes:
+      - ./latex-server:/app
+      - ./file-server/shared_files:/shared_files
+
+  # File server for file storage and retrieval
+  file-server:
+    build: ./file-server
+    container_name: mcp-adapter-file-server
+    ports:
+      - "8003:8000"
+    environment:
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DEBUG=${DEBUG:-false}
+      - SHARED_FILES_PATH=/shared_files
+    networks:
+      - mcp-network
+    volumes:
+      - ./file-server:/app
+      - ./file-server/shared_files:/shared_files
+
+networks:
+  mcp-network:
+    driver: bridge

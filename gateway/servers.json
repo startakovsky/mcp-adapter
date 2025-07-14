@@ -1,0 +1,34 @@
+{
+  "servers": {
+    "hello": {
+      "url": "http://hello-world:8000",
+      "description": "Hello World test server",
+      "access_level": "public",
+      "allowed_roles": ["*"]
+    },
+    "latex": {
+      "url": "http://latex-server:8000", 
+      "description": "LaTeX PDF compilation server",
+      "access_level": "public",
+      "allowed_roles": ["*"]
+    }
+  },
+  "rbac": {
+    "enabled": false,
+    "default_role": "anonymous",
+    "roles": {
+      "admin": {
+        "permissions": ["*"],
+        "description": "Full access to all servers and tools"
+      },
+      "user": {
+        "permissions": ["hello:*", "latex:read"],
+        "description": "Access to hello tools and read-only latex"
+      },
+      "anonymous": {
+        "permissions": ["hello:greet"],
+        "description": "Limited access for unauthenticated users"
+      }
+    }
+  }
+}
